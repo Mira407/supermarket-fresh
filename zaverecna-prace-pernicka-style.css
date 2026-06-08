@@ -573,7 +573,21 @@ body.no-scroll { overflow: hidden; }
 .amenities-list li:last-child { border-bottom: none; }
 .amenities-list li svg { position: absolute; left: 0; top: 50%; transform: translateY(-50%); color: var(--primary); }
 
+/* FIX #2 – prodejny.html: Na mobilu jsou tlačítka pod sebou, ale každé má jinou
+   přirozenou šířku (delší text = širší tlačítko). Oprava: pod 576px přepneme na
+   flex-direction: column + align-items: stretch, aby obě tlačítka zabrala plnou šířku. */
 .store-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
+
+@media (max-width: 576px) {
+    .store-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .store-actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
 
 /* KONTAKTNÍ STRÁNKA (Formulář & Grid) */
 .contact-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem; }
@@ -694,9 +708,36 @@ input[type="checkbox"].field-error { outline: 2px solid var(--error) !important;
 .legal-section h3 { font-size: 1.15rem; font-weight: 600; color: var(--dark); margin: 1.5rem 0 0.5rem 0; }
 .legal-section p { color: #334155; font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.25rem; text-align: left; }
 .legal-section p strong { color: var(--dark); }
+/* FIX #3 – ochrana-udaju.html + cookies.html: Kontaktní údaje v legal-address
+   nebyly na mobilu zarovnané – popisky (Název, Sídlo, Telefon, E-mail) měly
+   různé délky a hodnoty nebyly svisle zarovnány do jednoho sloupce.
+   Oprava: .legal-address .contact-item přepínáme na CSS grid s pevnou šířkou
+   pro sloupec s popiskem, takže hodnoty vždy začínají na stejné vodorovné pozici.
+   display: grid s min-content pro první sloupec (strong) + 1fr pro hodnotu. */
 .legal-address { font-style: normal; background-color: var(--light); border-left: 4px solid var(--primary); padding: 1.25rem 1.5rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin: 1.25rem 0; font-size: 1.05rem; line-height: 1.6; color: #334155; }
 .legal-address a { color: var(--primary); font-weight: 600; }
 .legal-address a:hover { color: var(--primary-hover); text-decoration: underline; }
+.legal-address .contact-item,
+.legal-address p.contact-item,
+.legal-address div.contact-item {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    column-gap: 0.75rem;
+    align-items: baseline;
+    padding: 0;
+    margin-bottom: 0.4rem;
+}
+.legal-address .contact-item:last-child,
+.legal-address p.contact-item:last-child,
+.legal-address div.contact-item:last-child {
+    margin-bottom: 0;
+}
+/* Zajistíme, že strong (popisek) nezabere víc než potřebuje */
+.legal-address .contact-item strong,
+.legal-address p.contact-item strong,
+.legal-address div.contact-item strong {
+    white-space: nowrap;
+}
 .legal-section ul, .legal-section ol { margin-left: 1.5rem; margin-bottom: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; }
 .legal-section li { color: #334155; font-size: 1.05rem; line-height: 1.6; }
 .legal-section li strong { color: var(--dark); }
@@ -737,7 +778,7 @@ input[type="checkbox"].field-error { outline: 2px solid var(--error) !important;
    MODUL: KARIÉRA A BENEFITY, OSTATNÍ FORMULÁŘE A DOPLNĚNÍ
    ========================================================================== */
 .culture-section { padding: 5rem 0; background-color: var(--white); }
-.culture-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem; align-items: center; max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; }
+.culture-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem; align-items: center; max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; overflow: hidden; }
 .culture-content h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--dark); }
 .culture-content p { color: var(--gray); margin-bottom: 1.5rem; line-height: 1.7; }
 .culture-features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2rem; }
@@ -810,6 +851,23 @@ input[type="checkbox"].field-error { outline: 2px solid var(--error) !important;
 @media (max-width: 992px) {
     .culture-grid { grid-template-columns: 1fr; gap: 2rem; }
     .job-details-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+
+/* FIX #1 – kariera.html: Na mobilu měla sekce "Jak se u nás pracuje" větší
+   odsazení vlevo než vpravo, protože culture-grid používal padding: 0 1.5rem
+   ale culture-features a jeho karty mohly přetékat přes pravý okraj.
+   Oprava: explicitní box-sizing a symetrický padding na malých obrazovkách. */
+@media (max-width: 576px) {
+    .culture-grid {
+        padding: 0 1.25rem;
+    }
+    .culture-features {
+        grid-template-columns: 1fr;
+    }
+    .culture-feature-card {
+        box-sizing: border-box;
+        width: 100%;
+    }
 }
 
 @media (max-width: 768px) {
