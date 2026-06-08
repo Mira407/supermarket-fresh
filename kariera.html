@@ -393,25 +393,25 @@
                             
                             <div class="form-group">
                                 <label for="career-fullname" class="form-label">Jméno a příjmení <abbr title="Povinné pole" aria-hidden="true">*</abbr></label>
-                                <input type="text" id="career-fullname" name="fullname" class="form-control" placeholder="Např. Jan Novák" aria-describedby="career-fullname-error" autocomplete="name" required aria-required="true">
+                                <input type="text" id="career-fullname" name="fullname" class="form-control" placeholder="Např. Jan Novák" aria-describedby="career-fullname-error" autocomplete="name" required>
                                 <span id="career-fullname-error" class="error-text" aria-live="polite"></span>
                             </div>
 
                             <div class="form-group">
                                 <label for="career-email" class="form-label">E-mailová adresa <abbr title="Povinné pole" aria-hidden="true">*</abbr></label>
-                                <input type="email" id="career-email" name="email" class="form-control" placeholder="jan.novak@priklad.cz" aria-describedby="career-email-error" autocomplete="email" required aria-required="true">
+                                <input type="email" id="career-email" name="email" class="form-control" placeholder="jan.novak@priklad.cz" aria-describedby="career-email-error" autocomplete="email" required>
                                 <span id="career-email-error" class="error-text" aria-live="polite"></span>
                             </div>
 
                             <div class="form-group">
                                 <label for="career-phone" class="form-label">Telefonní číslo <abbr title="Povinné pole" aria-hidden="true">*</abbr></label>
-                                <input type="tel" id="career-phone" name="phone" autocomplete="tel" class="form-control" placeholder="Např. +420 123 456 789" aria-describedby="career-phone-error" required aria-required="true">
+                                <input type="tel" id="career-phone" name="phone" autocomplete="tel" class="form-control" placeholder="Např. +420 123 456 789" aria-describedby="career-phone-error" required>
                                 <span id="career-phone-error" class="error-text" aria-live="polite"></span>
                             </div>
 
                             <div class="form-group">
                                 <label for="career-position" class="form-label">Mám zájem o&nbsp;pozici <abbr title="Povinné pole" aria-hidden="true">*</abbr></label>
-                                <select id="career-position" name="position" class="form-control" aria-describedby="career-position-error" required aria-required="true">
+                                <select id="career-position" name="position" class="form-control" aria-describedby="career-position-error" required>
                                     <option value="" disabled selected>Vyberte pracovní pozici</option>
                                     <option value="zastupce-vedouciho">Zástupce vedoucího prodejny (Prodejny)</option>
                                     <option value="specialista-nakupu">Specialista nákupu čerstvých potravin (Centrála)</option>
@@ -434,14 +434,14 @@
                                         Klikněte pro <strong>nahrání souboru</strong> nebo jej přetáhněte sem<br>
                                         <span class="file-upload-hint">Podporované formáty: PDF, DOC, DOCX (Max. 5 MB)</span>
                                     </label>
-                                    <input type="file" id="career-cv-file" name="cv-file" accept=".pdf,.doc,.docx" aria-describedby="career-cv-file-error" required aria-required="true">
+                                    <input type="file" id="career-cv-file" name="cv-file" accept=".pdf,.doc,.docx" aria-describedby="career-cv-file-error" required>
                                 </div>
                                 <span id="career-cv-file-error" class="error-text" aria-live="polite"></span>
                             </div>
 
                             <div class="form-group form-group-full">
                                 <div class="form-checkbox">
-                                    <input type="checkbox" id="career-gdpr" name="gdpr" aria-describedby="career-gdpr-error" required aria-required="true">
+                                    <input type="checkbox" id="career-gdpr" name="gdpr" aria-describedby="career-gdpr-error" required>
                                     <label for="career-gdpr">Souhlasím se zpracováním osobních údajů pro účely výběrového řízení v&nbsp;souladu se zásadami <a href="ochrana-udaju.html" target="_blank" rel="noopener noreferrer" class="gdpr-link">Ochrany osobních údajů (GDPR)<span class="visually-hidden"> (otevře se v nové záložce)</span></a> supermarketu Fresh. <abbr title="Povinné pole" aria-hidden="true">*</abbr></label>
                                 </div>
                                 <span id="career-gdpr-error" class="error-text" aria-live="polite"></span>
@@ -495,7 +495,7 @@
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                         <a href="mailto:info@supermarketfresh.cz" aria-label="E-mail: info@supermarketfresh.cz">info@supermarketfresh.cz</a>
                     </div>
-                    <div class="contact-item contact-item--hours" aria-label="Otevírací doba">
+                    <div class="contact-item contact-item--hours" role="group" aria-label="Otevírací doba">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                         <span id="footer-hours">Po–Ne: <time datetime="07:00">07:00</time>–<time datetime="20:00">20:00</time></span>
                     </div>
