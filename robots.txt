@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.supermarketfresh.cz/sitemap.xml
+Sitemap: https://mira407.github.io/supermarket-fresh/sitemap.xml
