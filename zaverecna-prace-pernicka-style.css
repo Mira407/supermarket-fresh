@@ -813,7 +813,10 @@ input[type="checkbox"].field-error { outline: 2px solid var(--error) !important;
 .job-card:hover { border-color: rgba(16, 185, 129, 0.3); box-shadow: var(--shadow-md); transform: translateY(-3px); }
 .job-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px dashed var(--border); }
 .job-title-block h3 { font-size: 1.35rem; color: var(--dark); font-weight: 700; margin-bottom: 0.25rem; }
-.job-meta { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; color: var(--gray); font-size: 0.9rem; margin: 0; padding: 0; }
+/* .job-meta: flex na desktopu – dt a dd jsou párově zarovnané vedle sebe.
+   Na mobilech přepínáme na grid (2 sloupce), aby "Lokalita: …" a "Typ úvazku: …"
+   vždy zůstaly pohromadě a zarovnané ve svislém sloupci, nikoli chaoticky zalamovaly. */
+.job-meta { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; color: var(--gray); font-size: 0.9rem; margin: 0; padding: 0; list-style: none; }
 .job-meta dt { font-weight: 600; color: var(--dark); }
 .job-meta dt::after { content: ':'; }
 .job-meta dd { margin: 0; margin-inline-end: 1rem; }
@@ -876,6 +879,19 @@ input[type="checkbox"].field-error { outline: 2px solid var(--error) !important;
     .job-header { flex-direction: column; gap: 1rem; }
     .job-footer { flex-direction: column; gap: 1.5rem; align-items: stretch; text-align: center; }
     .job-footer .btn { justify-content: center; }
+
+    /* FIX – kariera.html: job-meta na mobilu.
+       Flex + flex-wrap způsoboval, že dt a dd nepůsobily jako čisté páry –
+       při zalamování se "Typ úvazku" mohlo ocitnout na jiném řádku než jeho hodnota.
+       Grid se dvěma pevnými sloupci zaručuje, že každý pár (dt + dd) sedí přesně
+       vedle sebe a všechny páry jsou zarovnané ve společné mřížce. */
+    .job-meta {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 0.3rem 0.6rem;
+    }
+    .job-meta dt { margin: 0; }
+    .job-meta dd { margin: 0; }
 }
 
 /* ==========================================================================
@@ -2513,7 +2529,5 @@ html {
     margin: 0.5rem 0 0;
 }
 
-/* Otevírací doba v patičce – odsazení od předchozího položky (všechny stránky) */
-.contact-item--hours {
-    margin-top: 1.25rem;
-}
+/* Otevírací doba v patičce – odstraněn margin-top (mezeru řeší gap: 1.25rem na .contact-address,
+   stejně jako u telefonu a e-mailu → všechny položky mají nyní shodné odsazení) */
